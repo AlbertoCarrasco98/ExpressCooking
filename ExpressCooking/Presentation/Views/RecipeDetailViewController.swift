@@ -8,7 +8,7 @@ class RecipeDetailViewController: UIViewController {
     private let imageStackView = UIStackView()
     private let textView = UITextView()
     private let recipeImage = UIImageView()
-    private let tableViewIngredients = UITableView()
+    private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,11 +17,11 @@ class RecipeDetailViewController: UIViewController {
     
     private func setupUI() {
         title = recipe?.name
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         configureMainStackView()
         configureImageStackView()
         configureRecipeImage()
-        configureTableViewIngredients()
+        configureTableView()
     }
     
     //     Configure MainStackView
@@ -29,11 +29,11 @@ class RecipeDetailViewController: UIViewController {
     private func configureMainStackView() {
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(imageStackView)
-        mainStackView.addArrangedSubview(tableViewIngredients)
+        mainStackView.addArrangedSubview(tableView)
         //        mainStackView.addArrangedSubview(textView)
         mainStackView.axis = .vertical
         mainStackView.distribution = .fill
-        mainStackView.backgroundColor = .white
+        mainStackView.backgroundColor = .clear
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -51,7 +51,7 @@ class RecipeDetailViewController: UIViewController {
         imageStackView.layer.cornerRadius = 20
         imageStackView.layer.masksToBounds = true
         imageStackView.layer.borderWidth = 1.5
-        imageStackView.layer.borderColor = CGColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
+        imageStackView.layer.borderColor = UIColor.systemGray6.cgColor
         imageStackView.heightAnchor.constraint(equalToConstant: 280).isActive = true
     }
     
@@ -65,11 +65,12 @@ class RecipeDetailViewController: UIViewController {
     
     //     Configure TableView
     
-    private func configureTableViewIngredients() {
-        tableViewIngredients.register(UITableViewCell.self,
+    private func configureTableView() {
+        tableView.register(UITableViewCell.self,
                                       forCellReuseIdentifier: "Cell")
-        tableViewIngredients.dataSource = self
-        tableViewIngredients.delegate = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 }
 
@@ -95,7 +96,7 @@ extension RecipeDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableViewIngredients.dequeueReusableCell(withIdentifier: "Cell",
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
                                                                   for: indexPath)
         
         switch indexPath.section {
@@ -126,7 +127,7 @@ extension RecipeDetailViewController: UITableViewDataSource {
 
 extension RecipeDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableViewIngredients.deselectRow(at: indexPath,
+        tableView.deselectRow(at: indexPath,
                                          animated: true)
     }
 }

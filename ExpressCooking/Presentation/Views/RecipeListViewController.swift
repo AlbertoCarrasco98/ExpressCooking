@@ -24,6 +24,7 @@ class RecipeListViewController: UIViewController, RecipeAPIServiceDelegate {
     
     private func setupUI() {
         title = "Recipes"
+        view.backgroundColor = .systemBackground
         configureMainStackView()
         configureTableView()
         apiService.delegate = self
@@ -41,7 +42,7 @@ class RecipeListViewController: UIViewController, RecipeAPIServiceDelegate {
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             view.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor)
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor)
         ])
     }
     
