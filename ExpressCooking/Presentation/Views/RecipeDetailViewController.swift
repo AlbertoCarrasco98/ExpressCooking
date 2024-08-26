@@ -39,7 +39,7 @@ class RecipeDetailViewController: UIViewController {
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             view.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 24),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor)
+            view.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor)
         ])
     }
     

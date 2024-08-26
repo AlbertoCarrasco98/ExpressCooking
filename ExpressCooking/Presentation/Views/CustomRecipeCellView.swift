@@ -46,7 +46,6 @@ class CustomRecipeCellView: UIView {
     }
 
     private func setupViews() {
-//        backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         backgroundColor = .systemGray6
         heightAnchor.constraint(equalToConstant: 90).isActive = true
         widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
